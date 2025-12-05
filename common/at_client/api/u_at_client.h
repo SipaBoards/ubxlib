@@ -373,7 +373,7 @@ extern "C" {
 # ifdef __ARDUINO__
 #  define U_AT_CLIENT_URC_TASK_STACK_SIZE_BYTES  2816
 # else
-#  define U_AT_CLIENT_URC_TASK_STACK_SIZE_BYTES  2304
+#  define U_AT_CLIENT_URC_TASK_STACK_SIZE_BYTES  2304 * 2
 # endif
 #endif
 
@@ -392,7 +392,7 @@ extern "C" {
  * or STM32F4 and more again in the version pre-built for
  * Arduino/PlatformIO.
  */
-#  define U_AT_CLIENT_CALLBACK_TASK_STACK_SIZE_BYTES 2560
+#  define U_AT_CLIENT_CALLBACK_TASK_STACK_SIZE_BYTES 2560 * 2
 # else
 /** If geodesic position, using GeographicLib, is to be used, then
  * it is usually called via a uAtClientCallback() task, so give it

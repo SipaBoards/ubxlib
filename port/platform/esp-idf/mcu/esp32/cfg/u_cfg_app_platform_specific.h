@@ -19,8 +19,7 @@
 
 /** @file
  * @brief This header file contains configuration information for
- * an ESP32 platform that is fed in at application level; NONE of the
- * parameters here are compiled into ubxlib itself.  You should
+ * an ESP32 platform that is fed in at application level.  You should
  * override these values as necessary for your particular platform.
  * Note that the pin numbers used below should be those of the MCU: if you
  * are using an MCU inside a u-blox module the IO pin numbering for
@@ -105,14 +104,14 @@
 /** The ESP32 GPIO output that enables power to the cellular
  * module. -1 should be used where there is no such connection.
  */
-# define U_CFG_APP_PIN_CELL_ENABLE_POWER      2
+# define U_CFG_APP_PIN_CELL_ENABLE_POWER      -1
 #endif
 
 #ifndef U_CFG_APP_PIN_CELL_PWR_ON
 /** The ESP32 GPIO output that is connected to the PWR_ON
  * pin of the cellular module.
  */
-# define U_CFG_APP_PIN_CELL_PWR_ON            25
+# define U_CFG_APP_PIN_CELL_PWR_ON            (15 | U_CELL_PIN_INVERTED) // or 15
 #endif
 
 #ifndef U_CFG_APP_PIN_CELL_RESET
@@ -138,7 +137,7 @@
  * and change this value to match), otherwise this code will
  * think that the cellular module is on when in fact it is not.
  */
-# define U_CFG_APP_PIN_CELL_VINT              36
+# define U_CFG_APP_PIN_CELL_VINT              40
 #endif
 
 #ifndef U_CFG_APP_PIN_CELL_DTR
@@ -154,14 +153,14 @@
 /** The ESP32 GPIO output pin that sends UART data to the
  * cellular module.
  */
-# define U_CFG_APP_PIN_CELL_TXD              4
+# define U_CFG_APP_PIN_CELL_TXD              47
 #endif
 
 #ifndef U_CFG_APP_PIN_CELL_RXD
 /** The ESP32 GPIO input pin that receives UART data from the
  * cellular module.
  */
-# define U_CFG_APP_PIN_CELL_RXD              15
+# define U_CFG_APP_PIN_CELL_RXD              48
 #endif
 
 #ifndef U_CFG_APP_PIN_CELL_CTS
@@ -169,7 +168,7 @@
  * indicate that data can be sent to it.  -1 should be used where
  * there is no such connection.
  */
-# define U_CFG_APP_PIN_CELL_CTS              -1
+# define U_CFG_APP_PIN_CELL_CTS              33
 #endif
 
 #ifndef U_CFG_APP_PIN_CELL_RTS
@@ -178,7 +177,7 @@
  * be used where there is no such connection. If this is *not* -1
  * then be sure to set up U_CFG_HW_CELLULAR_RTS_THRESHOLD also.
  */
-# define U_CFG_APP_PIN_CELL_RTS              -1
+# define U_CFG_APP_PIN_CELL_RTS              34
 #endif
 
 /** Macro to return the CTS pin for cellular: on some
@@ -228,7 +227,7 @@
  * -------------------------------------------------------------- */
 
 #ifndef U_CFG_APP_PIN_GNSS_ENABLE_POWER
-/** The ESP32 GPIO output that enables power to the GNSS
+/** The ESP32 GPIO output that that enables power to the GNSS
  * module, use -1 if there is no such control.
  */
 # define U_CFG_APP_PIN_GNSS_ENABLE_POWER     -1
@@ -272,42 +271,42 @@
 /** The ESP32 GPIO input/output pin that is the I2C data pin;
  * use -1 where there is no such connection.
  */
-# define U_CFG_APP_PIN_GNSS_SDA               21
+# define U_CFG_APP_PIN_GNSS_SDA               -1
 #endif
 
 #ifndef U_CFG_APP_PIN_GNSS_SCL
 /** The ESP32 GPIO output pin that is the I2C clock pin;
  * use -1 where there is no such connection.
  */
-# define U_CFG_APP_PIN_GNSS_SCL               22
+# define U_CFG_APP_PIN_GNSS_SCL               -1
 #endif
 
 #ifndef U_CFG_APP_PIN_GNSS_SPI_MOSI
 /** The ESP32 output pin for SPI towards the GNSS module;
  * use -1 where there is no such connection.
  */
-# define U_CFG_APP_PIN_GNSS_SPI_MOSI          23
+# define U_CFG_APP_PIN_GNSS_SPI_MOSI          -1
 #endif
 
 #ifndef U_CFG_APP_PIN_GNSS_SPI_MISO
 /** The ESP32 input pin for SPI from the GNSS module;
  * use -1 where there is no such connection.
  */
-# define U_CFG_APP_PIN_GNSS_SPI_MISO          19
+# define U_CFG_APP_PIN_GNSS_SPI_MISO          -1
 #endif
 
 #ifndef U_CFG_APP_PIN_GNSS_SPI_CLK
 /** The ESP32 output pin that is the clock for SPI;
  * use -1 where there is no such connection.
  */
-# define U_CFG_APP_PIN_GNSS_SPI_CLK           18
+# define U_CFG_APP_PIN_GNSS_SPI_CLK           -1
 #endif
 
 #ifndef U_CFG_APP_PIN_GNSS_SPI_SELECT
 /** The ESP32 output pin that is the chip select for the GNSS
  * module; use -1 where there is no such connection.
  */
-# define U_CFG_APP_PIN_GNSS_SPI_SELECT         5
+# define U_CFG_APP_PIN_GNSS_SPI_SELECT         -1
 #endif
 
 /* ----------------------------------------------------------------
@@ -321,7 +320,7 @@
  * power to GNSS. This is the cellular module pin number NOT the cellular
  * module GPIO number.  Use -1 if there is no such connection.
  */
-# define U_CFG_APP_CELL_PIN_GNSS_POWER  23 // AKA GPIO2
+# define U_CFG_APP_CELL_PIN_GNSS_POWER  -1 // AKA GPIO2
 #endif
 
 #ifndef U_CFG_APP_CELL_PIN_GNSS_DATA_READY
@@ -332,7 +331,7 @@
  * cellular module pin number NOT the cellular module GPIO number.
  * Use -1 if there is no such connection.
  */
-# define U_CFG_APP_CELL_PIN_GNSS_DATA_READY  24 // AKA GPIO3
+# define U_CFG_APP_CELL_PIN_GNSS_DATA_READY  -1 // AKA GPIO3
 #endif
 
 #endif // _U_CFG_APP_PLATFORM_SPECIFIC_H_
