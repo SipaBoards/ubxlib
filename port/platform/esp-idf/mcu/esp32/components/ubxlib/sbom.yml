@@ -1,0 +1,29 @@
+# SBOM manifest for the ubxlib ESP-IDF component.
+# Consumed by esp-idf-sbom (https://github.com/espressif/esp-idf-sbom).
+#
+# Why this file exists: this repository is a SipaBoards fork of u-blox/ubxlib.
+# Without a manifest the tool derives package identity from the submodule URL
+# (github.com/SipaBoards/ubxlib), which matches no CPE, so the component is
+# never checked against the NVD and always reports clean - regardless of what
+# u-blox has disclosed. That is a clean result for the wrong reason.
+#
+# version  precise fork identity, for provenance.
+# cpe      nearest UPSTREAM release, for NVD version-range matching.
+#
+# The cpe deliberately does NOT use the "{}" placeholder. The tool substitutes
+# the version field into "{}", which would yield a CPE version of
+# "1.5.0-sipa.2" - not something the NVD can compare against a version range,
+# so matching would silently fail again. Base commit 4561c455 (2024-10-03) sits
+# on master after v1.5.0, so 1.5.0 is the conservative choice: it may report
+# issues fixed after v1.5.0, which is the safe direction to err in.
+name: 'ubxlib'
+version: '1.5.0-sipa.2'
+cpe: cpe:2.3:a:u-blox:ubxlib:1.5.0:*:*:*:*:*:*:*
+supplier: 'Organization: SipaBoards'
+originator: 'Organization: u-blox'
+repository: https://github.com/u-blox/ubxlib
+license: Apache-2.0
+description: u-blox cellular and GNSS library, ESP-IDF port. SipaBoards fork of upstream 4561c455 plus two local commits.
+cve-keywords:
+  - ubxlib
+  - u-blox
